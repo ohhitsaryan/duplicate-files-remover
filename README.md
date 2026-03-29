@@ -49,6 +49,15 @@ Navigate to the directory where you saved the file.
 ```bash
 cd path/to/your/folder
 ```
+**Step 3: Compile the Java file by running:**
+```bash
+javac DuplicateFileRemover.java
+```
+
+**Step 4: Run the application by executing:**
+```bash
+java DuplicateFileRemover
+```
 
 ## 📸 Screenshots
 
