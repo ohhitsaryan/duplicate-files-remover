@@ -48,3 +48,25 @@ Save the main application file as `DuplicateFileRemover.java` in a dedicated fol
 Navigate to the directory where you saved the file.
 ```bash
 cd path/to/your/folder
+```
+
+## 📸 Screenshots
+
+**Before:**
+![Before run](screenshots/before.png)
+
+**After:**
+![After run](screenshots/after.png)
+
+## 🧠 Working (How It Works Under the Hood)
+
+This application uses a multi-tiered filtering approach to maximize efficiency and safely manage memory:
+
+* **Recursive Directory Mapping:** Using a recursive helper method and Java's `File.listFiles()`, the application builds an exhaustive list of every single file located inside the target directory and its subdirectories.
+* **First Pass (Size Filtering):** It groups all discovered files by their exact size in bytes using `file.length()`. If a file has a completely unique size, it cannot possibly be a duplicate and is immediately discarded from the search. This saves massive amounts of processing time.
+* **Second Pass (MD5 Hashing):** For files that share the exact same byte size, the application reads them in 64KB memory blocks using `FileInputStream` and calculates their MD5 cryptographic checksum via Java's `MessageDigest`. Reading in blocks ensures the application does not crash when processing massive files (like 4GB video files).
+* **Validation & Execution:** If multiple files produce the exact same MD5 hash, they are flagged as duplicates. The GUI then pauses the background thread and presents a `JOptionPane` confirmation dialog. If the user clicks "Yes", the duplicates are permanently deleted using Java's `.delete()` method.
+
+## 👤 Author Name
+
+**Aryan Sharma 🦕**
